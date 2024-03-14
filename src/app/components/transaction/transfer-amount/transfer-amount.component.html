@@ -1,1 +1,62 @@
-<p>transfer-amount works!</p>
+<div class="row">
+    <div class="col-sm">
+        <form [formGroup]="transactionForm" (ngSubmit)="onSubmit">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="customerCreditCardNumber" class="form-label">Your Credit Card Number</label>
+                        <input type="text" name="customerCreditCardNumber" id="customerCreditCardNumber"
+                            class="form-control" formControlName="customerCreditCardNumber" />
+                    </div>
+                    <div class="form-group">
+                        <label for="customerName" class="form-label">Your Name</label>
+                        <input type="text" name="customerName" id="customerName" class="form-control"
+                            formControlName="customerName" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cvv" class="form-label">CVV</label>
+                        <input type="number" name="cvv" id="cvv" class="form-control" formControlName="cvv">
+                    </div>
+                    <div class="form-group">
+                        <label for="transactionName" class="form-label">Transaction Name</label>
+                        <input type="text" name="transactionName" id="transactionName" class="form-control"
+                            formControlName="transactionName" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="merchantCardNumber" class="form-label">Merchant Card Number</label>
+                        <input type="text" name="merchantCardNumber" id="merchantCardNumber" class="form-control"
+                            formControlName="merchantCardNumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="merchantName" class="form-label">Merchant Name</label>
+                        <input type="text" name="merchantName" id="merchantName" class="form-control"
+                            formControlName="merchantName">
+                    </div>
+                    <div class="form-group">
+                        <label for="validUpto" class="form-label">Valid Upto</label>
+                        <input type="text" name="validUpto" id="validUpto" class="form-control"
+                            formControlName="validUpto" placeholder="MM/YY"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" name="description" id="description" class="form-control"
+                            formControlName="description" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="amount" class="form-label">Amount</label>
+                <input type="number" min="1" name="amount" id="amount" class="form-control" formControlName="amount" />
+            </div>
+            <button type="submit" class="btn btn-success w-100 mt-5">Pay</button>
+
+        </form>
+    </div>
+    <div class="col-sm">
+        <p *ngIf="transactionResult"></p>
+
+    </div>
+</div>

@@ -1,21 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse justify-content-around">
-        <ul class="navbar-nav flex-grow-1 justify-content-between">
-            <li class="nav-item" routerLinkActive="active-link">
-                <a class="nav-link cursor-pointer" routerLink="/customer">Customer</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active-link">
-                <a class="nav-link cursor-pointer" routerLink="/merchant">Merchant</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active-link">
-                <a class="nav-link cursor-pointer" routerLink="/card">Card</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active-link">
-                <a class="nav-link cursor-pointer" routerLink="/transaction">Transaction</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active-link">
-                <a class="nav-link cursor-pointer" routerLink="/bill">Billing</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-sm bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer" routerLinkActive="nav-link active">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/merchant" routerLinkActive="nav-link active">Merchant</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/card" routerLinkActive="nav-link active">Card</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/transaction" routerLinkActive="nav-link active">Transaction</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/bill" routerLinkActive="nav-link active">Billing and
+                        Payment</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>

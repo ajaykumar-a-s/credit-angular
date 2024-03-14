@@ -61,6 +61,7 @@ export const routes: Routes = [
     children: [
       { path: 'transfer-amount', component: TransferAmountComponent },
       { path: 'view-all', component: ViewTransactionsComponent },
+      {path:'', redirectTo:'transfer-amount', pathMatch:'full'}
     ],
   },
   {
