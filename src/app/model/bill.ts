@@ -1,8 +1,8 @@
-import { Transaction } from './transaction';
+import { TransactionResponse } from './transaction-response';
 
 export interface Bill {
   billId?: number;
-  transactions: Transaction[];
+  transactions: TransactionResponse[];
   amount: number;
   billGeneratedDate: Date;
   dueDate: Date;
