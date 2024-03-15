@@ -8,13 +8,55 @@ import { TransactionResponse } from '../model/transaction-response';
   providedIn: 'root',
 })
 export class TransactionService {
-  constructor(private http: HttpClient) { }
-  transferAmount(transactionRequest: TransactionRequest): Observable<TransactionResponse>{
-    return this.http.post<TransactionResponse>('http://localhost:8080/transfer-amount', transactionRequest).pipe(
-      catchError(this.handleError)
-    );
+  constructor(private http: HttpClient) {}
+  transferAmount(
+    transactionRequest: TransactionRequest
+  ): Observable<TransactionResponse> {
+    return this.http
+      .post<TransactionResponse>(
+        'http://localhost:8080/transfer-amount',
+        transactionRequest
+      )
+      .pipe(catchError(this.handleError));
   }
-  handleError(httpError: HttpErrorResponse) :Observable<never>{
+  getTransactionById(transactionId: number): Observable<TransactionResponse> {
+    return this.http
+      .get<TransactionResponse>(
+        'http://localhost:8080/transaction/' + transactionId
+      )
+      .pipe(catchError(this.handleError));
+  }
+  getAllTransactions(): Observable<TransactionResponse[]> {
+    return this.http
+      .get<TransactionResponse[]>('http://localhost:8080/transactions')
+      .pipe(catchError(this.handleError));
+  }
+  getTransactionsByCustomerCreditCardNumber(
+    customerCreditCardNumber: string
+  ): Observable<TransactionResponse[]> {
+    return this.http
+      .get<TransactionResponse[]>(
+        'http://localhost:8080/transactions/' + customerCreditCardNumber
+      )
+      .pipe(catchError(this.handleError));
+  }
+  getTransactionsByCustomerCreditCardNumberForParticularDuration(
+    customerCreditCardNumber: string,
+    startDate: Date,
+    endDate: Date
+  ): Observable<TransactionResponse[]> {
+    return this.http
+      .get<TransactionResponse[]>(
+        'http://localhost:8080/transactions/' +
+          customerCreditCardNumber +
+          '/' +
+          startDate +
+          '/' +
+          endDate
+      )
+      .pipe(catchError(this.handleError));
+  }
+  handleError(httpError: HttpErrorResponse): Observable<never> {
     let errorMessage: string = '';
     if (httpError.error instanceof ErrorEvent) {
       errorMessage = `Error: ${httpError.error.message}`;

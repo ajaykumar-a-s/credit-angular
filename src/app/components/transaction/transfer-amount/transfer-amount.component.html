@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm">
-        <form [formGroup]="transactionForm" (ngSubmit)="onSubmit">
+        <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -38,7 +38,7 @@
                     <div class="form-group">
                         <label for="validUpto" class="form-label">Valid Upto</label>
                         <input type="text" name="validUpto" id="validUpto" class="form-control"
-                            formControlName="validUpto" placeholder="MM/YY"/>
+                            formControlName="validUpto" placeholder="MM/YY" />
                     </div>
                     <div class="form-group">
                         <label for="description" class="form-label">Description</label>
@@ -56,7 +56,42 @@
         </form>
     </div>
     <div class="col-sm">
-        <p *ngIf="transactionResult"></p>
+        <div *ngIf="transactionResult">
+            <div class="alert alert-success">Transaction Successful</div>
+            <div class="table-responsive">
 
+                <table class="table table-bordered table-success table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Merchant</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{transactionResult.transactionId}}</th>
+                            <td>{{transactionResult.transactionName}}</td>
+                            <td>{{transactionResult.description}}</td>
+                            <td>{{transactionResult.amount}}</td>
+                            <td>{{transactionResult.date | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{transactionResult.transactionType}}</td>
+                            <td>{{transactionResult.customerCreditCardNumber}}</td>
+                            <td>{{transactionResult.merchantCardNumber}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <div class="alert alert-danger" *ngIf="errorMessage && !transactionResult">
+            <p>Transaction Failed!</p><br>
+            <pre>{{errorMessage}}</pre>
+        </div>
     </div>
 </div>

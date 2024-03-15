@@ -13,8 +13,8 @@ import { CommonModule } from '@angular/common';
 })
 export class TransferAmountComponent implements OnInit {
   transactionForm!: FormGroup;
-  transactionResult!: TransactionResponse;
-  errroMessage!: string;
+  transactionResult !: TransactionResponse;
+  errorMessage!: string;
   constructor(
     private fb: FormBuilder,
     private transactionService: TransactionService
@@ -40,7 +40,7 @@ export class TransferAmountComponent implements OnInit {
           this.transactionResult = data;
         },
         error: (error) => {
-          this.errroMessage = error;
+          this.errorMessage = error;
         },
       });
   }
