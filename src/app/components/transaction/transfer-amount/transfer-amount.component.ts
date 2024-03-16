@@ -57,6 +57,7 @@ export class TransferAmountComponent implements OnInit {
           this.transactionResult = data;
         },
         error: (error) => {
+
           this.errorMessage = error;
         },
       });
