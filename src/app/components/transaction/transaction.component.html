@@ -3,7 +3,7 @@
     <div class="row pt-4">
         <div class="col-sm-2">
             <ul class="nav flex-column nav-pills nav-justified">
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="isCustomer">
                     <a routerLink="transfer-amount" routerLinkActive="active" class="nav-link">Transfer Amount</a>
                 </li>
                 <li class="nav-item">

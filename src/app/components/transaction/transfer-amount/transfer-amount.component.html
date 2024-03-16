@@ -51,7 +51,7 @@
                 <label for="amount" class="form-label">Amount</label>
                 <input type="number" min="1" name="amount" id="amount" class="form-control" formControlName="amount" />
             </div>
-            <button type="submit" class="btn btn-success w-100 mt-5">Pay</button>
+            <button type="submit" class="btn btn-success w-100 mt-5" [disabled]="transactionForm.invalid">Pay</button>
 
         </form>
     </div>
@@ -92,6 +92,76 @@
         <div class="alert alert-danger" *ngIf="errorMessage && !transactionResult">
             <p>Transaction Failed!</p><br>
             <pre>{{errorMessage}}</pre>
+        </div>
+        <div *ngIf="transactionForm.controls['customerCreditCardNumber'].touched">
+            <div *ngIf="transactionForm.controls['customerCreditCardNumber'].errors?.['required']"
+                class="alert alert-danger">
+                Customer Credit Card Number is required.
+            </div>
+            <div *ngIf="transactionForm.controls['customerCreditCardNumber'].errors?.['pattern']"
+                class="alert alert-danger">
+                Customer Credit Card Number must be 16 digits.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['customerName'].touched">
+            <div *ngIf="transactionForm.controls['customerName'].errors?.['required']" class="alert alert-danger">
+                Customer Name is required.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['validUpto'].touched">
+            <div *ngIf="transactionForm.controls['validUpto'].errors?.['required']" class="alert alert-danger">
+                Valid Upto is required.
+            </div>
+            <div *ngIf="transactionForm.controls['validUpto'].errors?.['pattern']" class="alert alert-danger">
+                Valid Upto must be in MM/YY format.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['cvv'].touched">
+            <div *ngIf="transactionForm.controls['cvv'].errors?.['required']" class="alert alert-danger">
+                CVV is required.
+            </div>
+            <div *ngIf="transactionForm.controls['cvv'].errors?.['pattern']" class="alert alert-danger">
+                CVV must be 3 digits.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['merchantCardNumber'].touched">
+            <div *ngIf="transactionForm.controls['merchantCardNumber'].errors?.['required']" class="alert alert-danger">
+                Merchant Card Number is required.
+            </div>
+            <div *ngIf="transactionForm.controls['merchantCardNumber'].errors?.['pattern']" class="alert alert-danger">
+                Merchant Card Number must be 16 digits.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['merchantName'].touched">
+            <div *ngIf="transactionForm.controls['merchantName'].errors?.['required']" class="alert alert-danger">
+                Merchant Name is required.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['transactionName'].touched">
+            <div *ngIf="transactionForm.controls['transactionName'].errors?.['required']" class="alert alert-danger">
+                Transaction Name is required.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['description'].touched">
+            <div *ngIf="transactionForm.controls['description'].errors?.['required']" class="alert alert-danger">
+                Description is required.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['amount'].touched">
+            <div *ngIf="transactionForm.controls['amount'].errors?.['required']" class="alert alert-danger">
+                Amount is required.
+            </div>
+            <div *ngIf="transactionForm.controls['amount'].errors?.['min']" class="alert alert-danger">
+                Amount must be at least 1.
+            </div>
         </div>
     </div>
 </div>
