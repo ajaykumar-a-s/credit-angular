@@ -19,7 +19,6 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 import { TransferAmountComponent } from './components/transaction/transfer-amount/transfer-amount.component';
 import { ViewTransactionsComponent } from './components/transaction/view-transactions/view-transactions.component';
 import { BillComponent } from './components/bill/bill.component';
-import { ViewBillComponent } from './components/bill/view-bill/view-bill.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { isLoggedInGuard } from './guards/is-logged-in.guard';
 import { isCustomerGuard } from './guards/is-customer.guard';
@@ -73,10 +72,7 @@ export const routes: Routes = [
   {
     path: 'bill',
     component: BillComponent,
-    children: [
-      { path: 'view', component: ViewBillComponent },
-      { path: 'payment', component: ViewBillComponent },
-    ],
+    
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
