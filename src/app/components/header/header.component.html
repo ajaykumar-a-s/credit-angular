@@ -1,21 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse justify-content-around">
-        <ul class="navbar-nav flex-grow-1 justify-content-between">
-            <li class="nav-item" routerLinkActive="active-link">
-                <a class="nav-link cursor-pointer" routerLink="/customer">Customer</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active-link">
-                <a class="nav-link cursor-pointer" routerLink="/merchant">Merchant</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active-link">
-                <a class="nav-link cursor-pointer" routerLink="/card">Card</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active-link">
-                <a class="nav-link cursor-pointer" routerLink="/transaction">Transaction</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active-link">
-                <a class="nav-link cursor-pointer" routerLink="/bill">Billing</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-sm bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <button class=" navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex" id="navbarNav">
+            <ul class="navbar-nav" *ngIf="isLoggedIn()">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/customer" routerLinkActive="active">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/merchant" routerLinkActive="active">Merchant</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/card" routerLinkActive="active">Card</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/transaction" routerLinkActive="active">Transaction</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/bill" routerLinkActive="active">Billing and Payment</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item" *ngIf="!isLoggedIn()">
+                    <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+                </li>
+                <li class="nav-item" *ngIf="isLoggedIn()">
+                    <button class="nav-link btn btn-link" routerLinkActive="active" (click)="logout()">Logout</button>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>

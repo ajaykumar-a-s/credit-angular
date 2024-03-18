@@ -21,7 +21,8 @@ import { ViewTransactionsComponent } from './components/transaction/view-transac
 import { BillComponent } from './components/bill/bill.component';
 import { ViewBillComponent } from './components/bill/view-bill/view-bill.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-
+import { isLoggedInGuard } from './guards/is-logged-in.guard';
+import { isCustomerGuard } from './guards/is-customer.guard';
 export const routes: Routes = [
   { path: 'register', component: AddCustomerComponent },
   { path: 'login', component: LoginComponent },
@@ -59,16 +60,22 @@ export const routes: Routes = [
     path: 'transaction',
     component: TransactionComponent,
     children: [
-      { path: 'transfer-amount', component: TransferAmountComponent },
+      {
+        path: 'transfer-amount',
+        component: TransferAmountComponent,
+        canActivate: [isCustomerGuard],
+      },
       { path: 'view-all', component: ViewTransactionsComponent },
     ],
+    canActivate: [isLoggedInGuard],
+    canActivateChild: [isLoggedInGuard],
   },
   {
     path: 'bill',
     component: BillComponent,
     children: [
       { path: 'view', component: ViewBillComponent },
-      { path: 'payment', component: ViewBillComponent }
+      { path: 'payment', component: ViewBillComponent },
     ],
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },

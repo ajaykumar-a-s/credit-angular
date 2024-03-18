@@ -1,1 +1,92 @@
-<p>view-transactions works!</p>
+<div class="row">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-lg" *ngIf="isAdmin">
+                <div class="form-group">
+                    <label for="transactionId" class="form-label">ID</label>
+                    <input type="text" class="form-control" id="transactionId" formControlName="transactionId">
+                </div>
+            </div>
+            <div class="col-lg" *ngIf="isAdmin">
+                <div class="form-group">
+                    <label for="customerCreditCardNumber" class="form-label">Credit Card Number</label>
+                    <input type="text" class="form-control" id="customerCreditCardNumber"
+                        formControlName="customerCreditCardNumber">
+                </div>
+            </div>
+            <div class="col-lg">
+                <div class="form-group">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="date" class="form-control" id="startDate" formControlName="startDate">
+                </div>
+            </div>
+            <div class="col-lg">
+                <div class="form-group">
+                    <label for="endDate" class="form-label">End Date</label>
+                    <input type="date" class="form-control" id="endDate" formControlName="endDate"
+                        [min]="searchForm.controls['startDate'].value">
+                </div>
+            </div>
+            <div class="col-lg d-flex align-items-center">
+                <button type="submit" class="btn btn-success" [disabled]="searchForm.invalid">Search</button>
+            </div>
+            <div class="col-lg-2 d-flex align-items-end alert alert-info">
+                Leave the fields blank to get all transactions.
+            </div>
+        </div>
+    </form>
+</div>
+<div class="alert alert-danger" *ngIf="errorMessage && transactions.length === 0">
+    <p>No Transactions!</p><br>
+    <pre>{{errorMessage}}</pre>
+</div>
+<div *ngIf="searchForm.controls['customerCreditCardNumber'].invalid && (searchForm.controls['customerCreditCardNumber'].dirty || searchForm.controls['customerCreditCardNumber'].touched)"
+    class="alert alert-danger">
+    <div *ngIf="searchForm.controls['customerCreditCardNumber'].errors?.['pattern']">
+        Please enter a Credit Card Number in valid format.
+    </div>
+</div>
+<!-- Error for startDate -->
+<div *ngIf="searchForm.controls['startDate'].invalid && (searchForm.controls['startDate'].dirty || searchForm.controls['startDate'].touched)"
+    class="alert alert-danger">
+    <div *ngIf="searchForm.controls['startDate'].errors?.['required']">
+        Start Date is required.
+    </div>
+</div>
+<!-- Error for endDate -->
+<div *ngIf="(searchForm.controls['endDate'].invalid && (searchForm.controls['endDate'].dirty || searchForm.controls['endDate'].touched))"
+    class="alert alert-danger">
+    <div *ngIf="searchForm.controls['endDate'].errors?.['required']">
+        End Date is required.
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="table-responsive" *ngIf="transactions.length > 0">
+        <table class="table table-bordered table-success table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Merchant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let transaction of transactions">
+                    <th scope="row">{{transaction.transactionId}}</th>
+                    <td>{{transaction.transactionName}}</td>
+                    <td>{{transaction.description}}</td>
+                    <td>{{transaction.amount}}</td>
+                    <td>{{transaction.date | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{transaction.transactionType}}</td>
+                    <td>{{transaction.customerCreditCardNumber}}</td>
+                    <td>{{transaction.merchantCardNumber}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

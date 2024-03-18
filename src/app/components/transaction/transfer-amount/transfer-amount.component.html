@@ -1,1 +1,167 @@
-<p>transfer-amount works!</p>
+<div class="row">
+    <div class="col-sm">
+        <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="customerCreditCardNumber" class="form-label">Your Credit Card Number</label>
+                        <input type="text" name="customerCreditCardNumber" id="customerCreditCardNumber"
+                            class="form-control" formControlName="customerCreditCardNumber" />
+                    </div>
+                    <div class="form-group">
+                        <label for="customerName" class="form-label">Your Name</label>
+                        <input type="text" name="customerName" id="customerName" class="form-control"
+                            formControlName="customerName" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cvv" class="form-label">CVV</label>
+                        <input type="number" name="cvv" id="cvv" class="form-control" formControlName="cvv">
+                    </div>
+                    <div class="form-group">
+                        <label for="transactionName" class="form-label">Transaction Name</label>
+                        <input type="text" name="transactionName" id="transactionName" class="form-control"
+                            formControlName="transactionName" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="merchantCardNumber" class="form-label">Merchant Card Number</label>
+                        <input type="text" name="merchantCardNumber" id="merchantCardNumber" class="form-control"
+                            formControlName="merchantCardNumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="merchantName" class="form-label">Merchant Name</label>
+                        <input type="text" name="merchantName" id="merchantName" class="form-control"
+                            formControlName="merchantName">
+                    </div>
+                    <div class="form-group">
+                        <label for="validUpto" class="form-label">Valid Upto</label>
+                        <input type="text" name="validUpto" id="validUpto" class="form-control"
+                            formControlName="validUpto" placeholder="MM/YY" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" name="description" id="description" class="form-control"
+                            formControlName="description" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="amount" class="form-label">Amount</label>
+                <input type="number" min="1" name="amount" id="amount" class="form-control" formControlName="amount" />
+            </div>
+            <button type="submit" class="btn btn-success w-100 mt-5" [disabled]="transactionForm.invalid">Pay</button>
+
+        </form>
+    </div>
+    <div class="col-sm">
+        <div *ngIf="transactionResult">
+            <div class="alert alert-success">Transaction Successful</div>
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-success table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Merchant</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{transactionResult.transactionId}}</th>
+                            <td>{{transactionResult.transactionName}}</td>
+                            <td>{{transactionResult.description}}</td>
+                            <td>{{transactionResult.amount}}</td>
+                            <td>{{transactionResult.date | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{transactionResult.transactionType}}</td>
+                            <td>{{transactionResult.customerCreditCardNumber}}</td>
+                            <td>{{transactionResult.merchantCardNumber}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <div class="alert alert-danger" *ngIf="errorMessage && !transactionResult">
+            <p>Transaction Failed!</p><br>
+            <pre>{{errorMessage}}</pre>
+        </div>
+        <div *ngIf="transactionForm.controls['customerCreditCardNumber'].touched">
+            <div *ngIf="transactionForm.controls['customerCreditCardNumber'].errors?.['required']"
+                class="alert alert-danger">
+                Customer Credit Card Number is required.
+            </div>
+            <div *ngIf="transactionForm.controls['customerCreditCardNumber'].errors?.['pattern']"
+                class="alert alert-danger">
+                Customer Credit Card Number must be 16 digits.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['customerName'].touched">
+            <div *ngIf="transactionForm.controls['customerName'].errors?.['required']" class="alert alert-danger">
+                Customer Name is required.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['validUpto'].touched">
+            <div *ngIf="transactionForm.controls['validUpto'].errors?.['required']" class="alert alert-danger">
+                Valid Upto is required.
+            </div>
+            <div *ngIf="transactionForm.controls['validUpto'].errors?.['pattern']" class="alert alert-danger">
+                Valid Upto must be in MM/YY format.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['cvv'].touched">
+            <div *ngIf="transactionForm.controls['cvv'].errors?.['required']" class="alert alert-danger">
+                CVV is required.
+            </div>
+            <div *ngIf="transactionForm.controls['cvv'].errors?.['pattern']" class="alert alert-danger">
+                CVV must be 3 digits.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['merchantCardNumber'].touched">
+            <div *ngIf="transactionForm.controls['merchantCardNumber'].errors?.['required']" class="alert alert-danger">
+                Merchant Card Number is required.
+            </div>
+            <div *ngIf="transactionForm.controls['merchantCardNumber'].errors?.['pattern']" class="alert alert-danger">
+                Merchant Card Number must be 16 digits.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['merchantName'].touched">
+            <div *ngIf="transactionForm.controls['merchantName'].errors?.['required']" class="alert alert-danger">
+                Merchant Name is required.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['transactionName'].touched">
+            <div *ngIf="transactionForm.controls['transactionName'].errors?.['required']" class="alert alert-danger">
+                Transaction Name is required.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['description'].touched">
+            <div *ngIf="transactionForm.controls['description'].errors?.['required']" class="alert alert-danger">
+                Description is required.
+            </div>
+        </div>
+
+        <div *ngIf="transactionForm.controls['amount'].touched">
+            <div *ngIf="transactionForm.controls['amount'].errors?.['required']" class="alert alert-danger">
+                Amount is required.
+            </div>
+            <div *ngIf="transactionForm.controls['amount'].errors?.['min']" class="alert alert-danger">
+                Amount must be at least 1.
+            </div>
+        </div>
+    </div>
+</div>
