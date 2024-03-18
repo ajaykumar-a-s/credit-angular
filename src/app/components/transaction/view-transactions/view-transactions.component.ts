@@ -100,6 +100,29 @@ export class ViewTransactionsComponent implements OnInit {
         });
       }
     });
+    if (this.isAdmin) {
+      this.transactionService.getAllTransactions().subscribe({
+        next: (data) => {
+          this.transactions = data;
+        },
+        error: (error) => {
+          this.errorMessage = error;
+        },
+      });
+    } else if (this.isCustomer) {
+      this.transactionService
+        .getTransactionsByCustomerCreditCardNumber(
+          this.searchForm.get('customerCreditCardNumber')?.value
+        )
+        .subscribe({
+          next: (data) => {
+            this.transactions = data;
+          },
+          error: (error) => {
+            this.errorMessage = error;
+          },
+        });
+    }
   }
   onSubmit() {
     console.log(this.searchForm.controls['customerCreditCardNumber'].value);

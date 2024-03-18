@@ -17,9 +17,9 @@ import { LoginService } from '../../services/login.service';
 })
 export class HeaderComponent{
   constructor(private loginService: LoginService, private router: Router) {}
-  isLoggedIn(): boolean {
-    return this.loginService.isLoggedIn();
-  }
+  isLoggedIn = this.loginService.isLoggedIn();
+  isCustomer = this.loginService.isCustomerLoggedIn();
+  isAdmin = this.loginService.isAdminLoggedIn();
   logout() {
     this.loginService.logout();
     this.router.navigate(['/login']);
