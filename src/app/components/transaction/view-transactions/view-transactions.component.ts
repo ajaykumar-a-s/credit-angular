@@ -155,8 +155,6 @@ export class ViewTransactionsComponent implements OnInit {
             },
             error: (error) => {
               this.errorMessage = error;
-              console.log(this.transactions);
-              console.log(this.errorMessage);
             },
           });
       } else {

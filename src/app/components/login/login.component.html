@@ -6,18 +6,20 @@
                     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
                     <div class="form-floating">
                         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-                            formControlName="email">
+                            formControlName="email" required>
                         <label for="floatingInput">Email address</label>
                     </div>
                     <div class="form-floating">
                         <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
-                            formControlName="password">
+                            formControlName="password" required>
                         <label for=" floatingPassword">Password</label>
                     </div>
                     <div class="d-flex justify-content-evenly">
-                        <button class="btn btn-success" type="button" (click)="onCustomerLogin()">Customer Sign
+                        <button class="btn btn-success" type="button" (click)="onCustomerLogin()"
+                            [disabled]="loginForm.invalid">Customer Sign
                             in</button>
-                        <button class="btn btn-danger" type="button" (click)="onAdminLogin()">Admin Sign in</button>
+                        <button class="btn btn-danger" type="button" (click)="onAdminLogin()"
+                            [disabled]="loginForm.invalid">Admin Sign in</button>
                     </div>
                 </form>
             </main>
@@ -27,7 +29,19 @@
                 <button class="btn btn-primary mt-3" routerLink="/register">New User? Register Here</button>
             </div>
         </div>
-        <div class="row w-25 m-auto mt-5">
+        <div class="row w-25 m-auto mt-5 text-center"
+            *ngIf="loginForm.invalid && (loginForm.touched || loginForm.dirty)">
+            <div class="alert alert-danger"
+                *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].touched || loginForm.controls['email'].dirty)">
+                Valid Email is required
+            </div>
+            <div class="alert alert-danger"
+                *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].touched || loginForm.controls['password'].dirty)">
+                Valid Password is required
+            </div>
+
+        </div>
+        <div class="row w-50 m-auto mt-5 text-center">
             <div *ngIf="errorMessage" class="alert alert-danger">
                 <pre>{{errorMessage}}</pre>
             </div>

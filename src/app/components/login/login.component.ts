@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LoginService } from '../../services/login.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['card/view-requests']);
     }
     this.loginForm = this.fb.group({
-      email: [''],
-      password: [''],
+      email: ['', Validators.email],
+      password: ['', Validators.required],
     });
   }
   onCustomerLogin() {
