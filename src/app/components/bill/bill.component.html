@@ -1,3 +1,64 @@
 <app-header></app-header>
 <p>bill works!</p>
-<router-outlet></router-outlet>
+<div class="alert alert-success" *ngIf="billResult">
+    <div class="row mt-5">
+        <div class="table-responsive">
+            <label>Bill</label>
+            <table class=" table table-bordered table-success table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Bill Id</th>
+                        <th scope="col">Amount to be paid</th>
+                        <th scope="col">Bill generated date</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Card Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <th scope="row">{{billResult.billId}}</th>
+                        <td>{{billResult.amount}}</td>
+                        <td>{{billResult.billGeneratedDate | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{billResult.dueDate | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{billResult.paid}}</td>
+                        <td>{{billResult.cardNumber}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    <div class="row mt-5">
+        <div class="table-responsive" >
+            <label>List of Transactions</label>
+            <table class="table table-bordered table-success table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Merchant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let transaction of billResult.transactions">
+                        <th scope="row">{{transaction.transactionId}}</th>
+                        <td>{{transaction.transactionName}}</td>
+                        <td>{{transaction.description}}</td>
+                        <td>{{transaction.amount}}</td>
+                        <td>{{transaction.date | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{transaction.transactionType}}</td>
+                        <td>{{transaction.customerCreditCardNumber}}</td>
+                        <td>{{transaction.merchantCardNumber}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div><button (click)="onPayBill()" *ngIf="!billResult.paid">Pay Bill</button></div>
+</div>
+<div class="alert alert-danger" *ngIf="errorMessage"><pre>{{errorMessage}}</pre></div>

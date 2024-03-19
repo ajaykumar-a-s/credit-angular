@@ -1,11 +1,11 @@
 import { TransactionResponse } from './transaction-response';
 
-export interface Bill {
+export interface BillResponse {
   billId?: number;
   transactions: TransactionResponse[];
   amount: number;
   billGeneratedDate: Date;
   dueDate: Date;
-  isPaid: boolean;
+  paid: boolean;
   cardNumber: string;
 }
