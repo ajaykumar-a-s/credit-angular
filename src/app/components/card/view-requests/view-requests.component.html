@@ -1,1 +1,41 @@
-<p>view-requests works!</p>
+
+   
+
+  <div class="row mt-5">
+    <div class="table-responsive" *ngIf="requestedCardList.length > 0;else noRequests">
+      <table class="table table-bordered table-success table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Request ID</th>
+            <th scope="col">Status</th>
+            <th scope="col">Customer ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Annual Income</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let card of requestedCardList">
+            <td>{{card.creditCardRequestId}}</td>
+            <td>{{card.status}}</td>
+            <td>{{card.customer.customerId}}</td>
+            <td>{{card.customer.name}}</td>
+            <td>{{card.customer.email}}</td>
+            <td>{{card.customer.phone}}</td>
+            
+            <td>{{card.customer.dateOfBirth}}</td>
+            <td>{{card.customer.annualIncome}}</td>
+            <td>
+              <button  (click)="approve(card.creditCardRequestId)">Validate</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noRequests>
+      <div>No pending requests found.</div>
+    </ng-template>
+  </div>

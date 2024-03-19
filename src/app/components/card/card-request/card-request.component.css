@@ -1,0 +1,33 @@
+
+
+.button-text {
+  font-size: 15px;
+  font-style: bold;
+  size: 20PX;
+  padding: 15px;
+width: 150px;
+  color: white 
+}
+
+.container {
+  height: 200px;
+  position: absolute;
+  
+}
+p.my-paragraph {
+  font-weight: bold;
+ text-align: center;
+ size: 20px;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  color:black;
+  /*-ms-transform: translateY(-50%);
+  transform: translateY(-50%); */
+  background-color: rgb(219, 219, 31);
+  border-radius: 10px;
+
+}
