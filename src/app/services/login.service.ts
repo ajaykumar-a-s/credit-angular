@@ -35,6 +35,16 @@ export class LoginService {
   isLoggedIn(): boolean {
     return this.isCustomerLoggedIn() || this.isAdminLoggedIn();
   }
+  getCustomer() {
+    if (this.isCustomerLoggedIn()) {
+      return JSON.parse(localStorage.getItem('customer') || '{}');
+    }
+  }
+  getAdmin() {
+    if (this.isAdminLoggedIn()) {
+      return JSON.parse(localStorage.getItem('admin') || '{}');
+    }
+  }
   logout() {
     localStorage.removeItem('customer');
     localStorage.removeItem('admin');
