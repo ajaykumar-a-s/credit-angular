@@ -1,1 +1,8 @@
-<p>card-request works!</p>
+<div >
+  <p class="my-paragraph">CLICK HERE TO REQUEST A NEW CARD<p>
+    <br>
+ <button class="button-text vertical-center" (click)="onButtonClick()">REQUEST</button>
+</div>
+<br>
+<br>
+<div class="alert alert-info" *ngIf="response"><pre>{{response}}</pre></div>

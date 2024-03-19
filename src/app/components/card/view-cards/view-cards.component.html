@@ -1,1 +1,33 @@
-<p>view-cards works!</p>
+<div class="row mt-5">
+    <div class="table-responsive" *ngIf="cardList.length > 0,else noCards">
+      <table class="table table-bordered table-striped table-hover">
+        <thead class="table-primary">
+          <tr>
+            <th>Credit Card ID</th>
+            <th>Card Number</th>
+            <th>Valid Upto</th>
+            <th>CVV</th>
+            <th>Current Limit</th>
+            <th>Card Type</th>
+            <th>Credit Limit</th>
+            <th>Interest Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let card of cardList">
+            <td>{{card.creditCardId}}</td>
+            <td>{{card.cardNumber}}</td>
+            <td>{{card.validUpto}}</td>
+            <td>{{card.cvv}}</td>
+            <td>{{card.currentLimit}}</td>
+            <td>{{card.creditCardType.cardType}}</td>
+            <td>{{card.creditCardType.creditLimit}}</td>
+            <td>{{card.creditCardType.interestRate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noCards>
+        <div>No Credit cards found</div>
+      </ng-template>
+  </div>
