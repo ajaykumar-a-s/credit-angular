@@ -1,4 +1,6 @@
-.container {
-    padding: 16px;
-    background-color: white;
-  }
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:hsl(154, 10%, 73%);
+}

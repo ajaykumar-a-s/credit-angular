@@ -13,8 +13,14 @@ import { MerchantService } from '../../../services/merchant.service';
   styleUrl: './add-merchant.component.css'
 })
 export class AddMerchantComponent {
-  //const merchantInstance: Merchant = new Merchant();
-  merchant:Merchant= new Merchant();
+ // const merchantInstance: Merchant = new Merchant();
+ // merchant:Merchant= new Merchant();
+
+  merchant: Merchant = {
+    name: '',
+    balance: 0,
+    cardNumber: ''
+  };
   constructor(private merchantService:MerchantService){}
     addMerchant(){
       
@@ -27,6 +33,7 @@ export class AddMerchantComponent {
             console.log(err);
           }
         }
+        
       )
     }
 

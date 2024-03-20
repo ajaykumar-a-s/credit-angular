@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MerchantService } from '../../../services/merchant.service';
 import { Merchant } from '../../../model/merchant';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-view-merchant',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './view-merchant.component.html',
   styleUrl: './view-merchant.component.css'
 })
