@@ -1,1 +1,19 @@
-<p>add-merchant works!</p>
+<h2> Add New Merchant</h2>
+
+<body>
+    <div class="container" style="background-color: gainsboro;">
+        <form style="background-color: gainsboro;">
+            <label for="merchantName">MERCHANT NAME:</label>
+            <input type="text" id="merchantName" name="merchantName" [(ngModel)]="merchant.name" required><BR><BR>
+
+            <label for="merchantId">MERCHANT ID :</label>
+            <input type="text" id="merchantId" name="merchantId" [(ngModel)]="merchant.merchantId" required><br><br>
+
+            <label for="cardNumber">CARD NUMBER :</label>
+            <input type="text" id="cardNumber" name="cardNumber" [(ngModel)]="merchant.cardNumber" required><br><br>
+
+
+            <button type="submit" (click)="addMerchant()">Add Merchant</button>
+        </form>
+    </div>
+</body>
