@@ -1,1 +1,15 @@
-<p>view-merchant works!</p>
+
+<h2>List of Merchants</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Card Number</th>
+    </tr>
+    <tr *ngFor="let merchant of merchants">
+        <td>{{ merchant.merchantId }}</td>
+        <td>{{ merchant.name }}</td>
+        <td>{{ merchant.cardNumber }}</td>
+    </tr></table>
+

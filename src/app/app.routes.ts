@@ -9,7 +9,6 @@ import { DeleteCustomerComponent } from './components/customer/delete-customer/d
 import { MerchantComponent } from './components/merchant/merchant.component';
 import { AddMerchantComponent } from './components/merchant/add-merchant/add-merchant.component';
 import { ViewMerchantComponent } from './components/merchant/view-merchant/view-merchant.component';
-import { ViewMerchantsComponent } from './components/merchant/view-merchants/view-merchants.component';
 import { UpdateMerchantComponent } from './components/merchant/update-merchant/update-merchant.component';
 import { CardComponent } from './components/card/card.component';
 import { CardRequestComponent } from './components/card/card-request/card-request.component';
@@ -39,11 +38,9 @@ export const routes: Routes = [
     path: 'merchant',
     component: MerchantComponent,
     children: [
-      { path: 'add', component: AddMerchantComponent },
+      { path: 'add-merchant', component: AddMerchantComponent },
       { path: 'update', component: UpdateMerchantComponent },
-      { path: 'view', component: ViewMerchantComponent },
-      { path: 'view-all', component: ViewMerchantsComponent },
-      { path: 'delete', component: DeleteCustomerComponent },
+      { path: 'view', component: ViewMerchantComponent }
     ],
   },
   {
