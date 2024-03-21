@@ -1,4 +1,32 @@
 <app-header></app-header>
-<p>customer works</p>
-<a routerLink="view" routerLinkActive="active">View</a>
-<router-outlet></router-outlet>
+<div class="table-responsive mt-5" *ngIf="customers.length > 0">
+    <table class="table table-bordered table-success table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Annual Income</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers; let i = index">
+                <th scope="row">{{customer.customerId}}</th>
+                <td>{{customer.name}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.phone}}</td>
+                <td>{{customer.address}}</td>
+                <td>{{customer.dateOfBirth | date: 'dd/MM/yyyy'}}</td>
+                <td>{{customer.annualIncome}}</td>
+                <td><button class="btn btn-primary" (click)="updateCustomer(i)">Update</button></td>
+                <td><button class="btn btn-danger" (click)="deleteCustomer(customer.customerId)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="alert alert-danger" *ngIf="errorMessage"><pre>{{errorMessage}}</pre></div>
