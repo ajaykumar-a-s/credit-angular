@@ -6,15 +6,16 @@
 
 <body>
     <div class="container" style="background-color: gainsboro;">
-        <form style="background-color: gainsboro;">
+        <form style="background-color: gainsboro;" [formGroup]="merchantForm" (ngSubmit)="addMerchant()">
 
             <label for="merchantName"><b>MERCHANT NAME</b></label><br>
-            <input type="text" id="merchantName" name="merchantName" [(ngModel)]="merchant.name" required><BR><BR>
+            <input type="text" id="merchantName" name="merchantName" formControlName="name"><BR><BR>
 
             <label for="cardNumber"><b>CARD NUMBER :</b></label><br>
-            <input type="text" id="cardNumber" name="cardNumber" [(ngModel)]="merchant.cardNumber" required><br><br>
+            <input type="text" id="cardNumber" name="cardNumber" formControlName="cardNumber"><br><br>
 
-            <button type="submit" style="background-color:#b1c4bd;" (click)="addMerchant()"><b>Add Merchant</b></button>
+            <button type="submit" style="background-color:#b1c4bd;" ><b>Add Merchant</b></button>
         </form>
     </div>
 </body>
+<div class="alert alert-info" *ngIf="response"><pre>{{response}}</pre></div>

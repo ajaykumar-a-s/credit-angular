@@ -25,4 +25,19 @@ export class ViewMerchantComponent implements OnInit{
       }
     });
   }
+  deleteMerchant(merchant:any)
+  {
+this.merchantService.deleteMerchant(merchant.merchantId).subscribe({
+  next:(data)=>{
+    console.log(data);
+    this.ngOnInit();
+    alert("Merchant  deleted successfully");
+
+  },
+  error:(err)=>{
+    console.log(err);
+    
+  }
+})
+  }
 }
