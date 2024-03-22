@@ -6,19 +6,18 @@
 <body style="background-color: gainsboro;">
     <div class="container" style="background-color: gainsboro;">
         <form style="background-color: gainsboro;">
+
             <label for="merchantName"><b>MERCHANT NAME:</b></label><br>
             <input type="text" id="merchantName" name="merchantName" required><BR><BR>
-
-            <!--<label for="merchantId">MERCHANT ID :</label>
-            <input type="text" id="merchantId" name="merchantId" required><br><br>-->
 
             <label for="cardNumber"><b>CARD NUMBER :</b></label><br>
             <input type="text" id="cardNumber" name="cardNumber" required><br><br>
 
-
-
-
-            <button type="submit"><b>Update Merchant</b></button>
+            <button type="submit" (click)="updateMerchant(merchant)"><b>Update Merchant</b></button>
+        
         </form>
     </div>
 </body>
+
+
+

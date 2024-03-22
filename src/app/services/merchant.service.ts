@@ -13,19 +13,26 @@ export class MerchantService {
   }
 
   addMerchant(merchant:Merchant):Observable<any>{
-    return this.http.post("http://localhost:8080/merchant",merchant);
+    return this.http.post("http://localhost:8080/merchant",merchant)
+    .pipe(catchError(this.handleError));
   }
 
  deleteMerchant(id:number):Observable<any>{
-  return this.http.delete("http://localhost:8080/merchant"+id);
+  return this.http.delete("http://localhost:8080/merchant/"+id)
+  .pipe(catchError(this.handleError));;
  }
 
  getAllMerchants():Observable<any>{
-  return this.http.get("http://localhost:8080/merchants");
+  return this.http.get("http://localhost:8080/merchants")
+  .pipe(catchError(this.handleError));;
  }
- 
+ updateMerchant(merchant:Merchant):Observable<any>{
+  return this.http.get("http://localhost:8080/merchant/")
+  .pipe(catchError(this.handleError));;
+ }
 
                                  
+
 
 
  handleError(httpError: HttpErrorResponse): Observable<never> {
@@ -36,6 +43,5 @@ export class MerchantService {
     errorMessage = `Error Code: ${httpError.status}\nMessage: ${httpError.error}`;
   }
   return throwError(errorMessage);
-
 }
 }
