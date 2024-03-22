@@ -18,27 +18,30 @@ import { BillComponent } from './components/bill/bill.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { isLoggedInGuard } from './guards/is-logged-in.guard';
 import { isCustomerGuard } from './guards/is-customer.guard';
+import { isAdminGuard } from './guards/is-admin.guard';
 export const routes: Routes = [
   { path: 'register', component: AddCustomerComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'customer', component: CustomerComponent},
-  {path: 'update-customer', component: UpdateCustomerComponent},
+  { path: 'customer', component: CustomerComponent, canActivate:[isLoggedInGuard]},
+  {path: 'update-customer', component: UpdateCustomerComponent, canActivate:[isLoggedInGuard]},
   {
     path: 'merchant',
     component: MerchantComponent,
     children: [
-      { path: 'add-merchant', component: AddMerchantComponent },
-      { path: 'update', component: UpdateMerchantComponent },
-      { path: 'view', component: ViewMerchantComponent }
+      { path: 'add-merchant', component: AddMerchantComponent, canActivate:[isLoggedInGuard] },
+      { path: 'update', component: UpdateMerchantComponent, canActivate:[isLoggedInGuard] },
+      { path: 'view', component: ViewMerchantComponent, canActivate:[isLoggedInGuard] }
     ],
   },
   {
     path: 'card',
     component: CardComponent,
+    canActivate: [isLoggedInGuard],
+    canActivateChild: [isLoggedInGuard],
     children: [
-      { path: 'request', component: CardRequestComponent },
-      { path: 'view-requests', component: ViewRequestsComponent },
-      { path: 'view-cards', component: ViewCardsComponent },
+      { path: 'request', component: CardRequestComponent, canActivate:[isCustomerGuard] },
+      { path: 'view-requests', component: ViewRequestsComponent, canActivate:[isAdminGuard] },
+      { path: 'view-cards', component: ViewCardsComponent, canActivate:[isAdminGuard] },
     ],
   },
   {
@@ -58,6 +61,7 @@ export const routes: Routes = [
   {
     path: 'bill',
     component: BillComponent,
+    canActivate: [isCustomerGuard],
     
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
