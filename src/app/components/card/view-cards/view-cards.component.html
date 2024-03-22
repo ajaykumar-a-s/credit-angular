@@ -5,24 +5,28 @@
           <tr>
             <th>Credit Card ID</th>
             <th>Card Number</th>
-            <th>Valid Upto</th>
             <th>CVV</th>
-            <th>Current Limit</th>
             <th>Card Type</th>
-            <th>Credit Limit</th>
+            <th>Valid Upto</th>
+            
             <th>Interest Rate</th>
+            <th>Credit Limit</th>
+            <th>Current Limit</th>
+          
+           
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let card of cardList">
             <td>{{card.creditCardId}}</td>
             <td>{{card.cardNumber}}</td>
-            <td>{{card.validUpto}}</td>
             <td>{{card.cvv}}</td>
-            <td>{{card.currentLimit}}</td>
             <td>{{card.creditCardType.cardType}}</td>
-            <td>{{card.creditCardType.creditLimit}}</td>
+            <td>{{card.validUpto}}</td>
             <td>{{card.creditCardType.interestRate}}</td>
+            <td>{{card.creditCardType.creditLimit}}</td>
+            <td>{{card.currentLimit}}</td>
+        
           </tr>
         </tbody>
       </table>
