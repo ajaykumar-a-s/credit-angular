@@ -7,6 +7,7 @@ import { Merchant } from '../model/merchant';
   providedIn: 'root'
 })
 export class MerchantService {
+  currentMerchant !: Merchant;
 
   constructor(private http:HttpClient) { 
     
@@ -17,7 +18,7 @@ export class MerchantService {
     .pipe(catchError(this.handleError));
   }
 
- deleteMerchant(id:number):Observable<any>{
+ deleteMerchant(id:number| undefined):Observable<any>{
   return this.http.delete("http://localhost:8080/merchant/"+id)
   .pipe(catchError(this.handleError));;
  }
@@ -27,9 +28,16 @@ export class MerchantService {
   .pipe(catchError(this.handleError));;
  }
  updateMerchant(merchant:Merchant):Observable<any>{
-  return this.http.get("http://localhost:8080/merchant/")
+  return this.http.put("http://localhost:8080/merchant/update",merchant)
   .pipe(catchError(this.handleError));;
  }
+  public  setMerchant(merchant:Merchant):void{
+    this.currentMerchant=merchant;
+  }
+  public getMerchant():Merchant{
+    return this.currentMerchant;
+  }
+
 
                                  
 
