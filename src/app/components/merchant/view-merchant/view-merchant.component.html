@@ -8,15 +8,15 @@
         <th>Update</th>
         <th>delete</th>
     </tr>
-    <tr *ngFor="let merchant of merchants">
+    <tr *ngFor="let merchant of merchants; let i = index">
         <td>{{ merchant.merchantId }}</td>
         <td>{{ merchant.name }}</td>
         <td>{{ merchant.cardNumber }}</td>
         <td>
-            <button type="button" routerLink="../update">Update</button>
+            <button type="button" (click)="updateMerchant(i)">Update</button>
         </td>
         <td>
-            <button type="button" (click)="deleteMerchant(merchant)">Delete</button>
+            <button type="button" (click)="deleteMerchant(merchant.merchantId)">Delete</button>
         </td>
     </tr>
 </table>

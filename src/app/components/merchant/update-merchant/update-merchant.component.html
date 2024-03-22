@@ -5,17 +5,22 @@
 
 <body style="background-color: gainsboro;">
     <div class="container" style="background-color: gainsboro;">
-        <form style="background-color: gainsboro;">
+        <form style="background-color: gainsboro;" [formGroup]="merchantForm" (ngSubmit)="updateMerchant()">
 
-            <label for="merchantName"><b>MERCHANT NAME:</b></label><br>
-            <input type="text" id="merchantName" name="merchantName" required><BR><BR>
+            <label for="merchantName"><b>MERCHANT NAME</b></label><br>
+            <input type="text" id="merchantName" name="merchantName" formControlName="name" /><BR><BR>
 
             <label for="cardNumber"><b>CARD NUMBER :</b></label><br>
-            <input type="text" id="cardNumber" name="cardNumber" required><br><br>
+            <input type="text" id="cardNumber" name="cardNumber" formControlName="cardNumber"/><br><br>
 
-            <button type="submit" (click)="updateMerchant(merchant)"><b>Update Merchant</b></button>
-        
+            <button type="submit" style="background-color:#b1c4bd;" [disabled]="merchantForm.invalid" ><b>update Merchant</b></button>
         </form>
+    </div>
+    <div *ngIf="merchantForm.controls['name'].invalid && (merchantForm.controls['name'].touched || merchantForm.controls['name'].dirty)" class="alert alert-danger">
+        Name is required
+    </div>
+    <div *ngIf="merchantForm.controls['cardNumber'].invalid && (merchantForm.controls['cardNumber'].touched || merchantForm.controls['cardNumber'].dirty)" class="alert alert-danger">
+       Card Number should be 16 digits
     </div>
 </body>
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MerchantService } from '../../../services/merchant.service';
 import { Merchant } from '../../../model/merchant';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-view-merchant',
@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
 })
 export class ViewMerchantComponent implements OnInit{
   merchants !: Merchant[];
-  constructor(private merchantService: MerchantService) {}
+  constructor(private merchantService: MerchantService,private router:Router, private route : ActivatedRoute) {}
   ngOnInit(): void {
     this.merchantService.getAllMerchants().subscribe({
       next: (data) => {
@@ -25,9 +25,9 @@ export class ViewMerchantComponent implements OnInit{
       }
     });
   }
-  deleteMerchant(merchant:any)
+  deleteMerchant(merchantId:number|undefined)
   {
-this.merchantService.deleteMerchant(merchant.merchantId).subscribe({
+this.merchantService.deleteMerchant(merchantId).subscribe({
   next:(data)=>{
     console.log(data);
     this.ngOnInit();
@@ -40,4 +40,10 @@ this.merchantService.deleteMerchant(merchant.merchantId).subscribe({
   }
 })
   }
-}
+  updateMerchant(id:number) {
+    this.merchantService.setMerchant(this.merchants[id]);
+    this.router.navigate(['../update'], { relativeTo: this.route });
+  
+
+  }
+  }
