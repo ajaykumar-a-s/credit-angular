@@ -43,7 +43,7 @@ export const routes: Routes = [
     children: [
       { path: 'request', component: CardRequestComponent, canActivate:[isCustomerGuard] },
       { path: 'view-requests', component: ViewRequestsComponent, canActivate:[isAdminGuard] },
-      { path: 'view-cards', component: ViewCardsComponent, canActivate:[isAdminGuard] },
+      { path: 'view-cards', component: ViewCardsComponent },
     ],
   },
   {
