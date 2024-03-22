@@ -18,7 +18,12 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private router: Router,
     private fb: FormBuilder
-  ) {}
+
+
+
+  ) {
+    
+  }
   ngOnInit(): void {
     if (this.loginService.isCustomerLoggedIn()) {
       this.router.navigate(['/customer']);
@@ -53,4 +58,6 @@ export class LoginComponent implements OnInit {
       },
     });
   }
+  
+  
 }

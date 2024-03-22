@@ -16,6 +16,8 @@ import { LoginService } from '../../services/login.service';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent{
+//username: any = this.loginService.getCustomer().name;
+ //adminname:any=this.loginService.getAdmin().name;
   constructor(private loginService: LoginService, private router: Router) {}
   isLoggedIn = this.loginService.isLoggedIn();
   isCustomer = this.loginService.isCustomerLoggedIn();
