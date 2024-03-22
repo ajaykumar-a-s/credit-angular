@@ -16,4 +16,5 @@ export class CardComponent {
     constructor(private loginService: LoginService) {}
     isCustomer = this.loginService.isCustomerLoggedIn();
     isAdmin = this.loginService.isAdminLoggedIn();
-}
+    isLoggedIn = this.loginService.isLoggedIn();
+}   
