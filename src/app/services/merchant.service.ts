@@ -28,7 +28,7 @@ export class MerchantService {
   .pipe(catchError(this.handleError));;
  }
  updateMerchant(merchant:Merchant):Observable<any>{
-  return this.http.put("http://localhost:8080/merchant/update",merchant)
+  return this.http.put("http://localhost:8080/merchant",merchant)
   .pipe(catchError(this.handleError));;
  }
   public  setMerchant(merchant:Merchant):void{
