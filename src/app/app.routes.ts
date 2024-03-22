@@ -27,10 +27,12 @@ export const routes: Routes = [
   {
     path: 'merchant',
     component: MerchantComponent,
+    canActivate: [isLoggedInGuard],
+    canActivateChild: [isLoggedInGuard],
     children: [
-      { path: 'add-merchant', component: AddMerchantComponent, canActivate:[isLoggedInGuard] },
-      { path: 'update', component: UpdateMerchantComponent, canActivate:[isLoggedInGuard] },
-      { path: 'view', component: ViewMerchantComponent, canActivate:[isLoggedInGuard] }
+      { path: 'add-merchant', component: AddMerchantComponent },
+      { path: 'update', component: UpdateMerchantComponent },
+      { path: 'view', component: ViewMerchantComponent}
     ],
   },
   {
