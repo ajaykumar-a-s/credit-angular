@@ -1,6 +1,5 @@
 <app-header></app-header>
-<p>bill works!</p>
-<div class="alert alert-success" *ngIf="billResult">
+<div class="alert alert-success mt-5" *ngIf="billResult">
     <div class="row mt-5">
         <div class="table-responsive">
             <label>Bill</label>
@@ -16,7 +15,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >
+                    <tr>
                         <th scope="row">{{billResult.billId}}</th>
                         <td>{{billResult.amount}}</td>
                         <td>{{billResult.billGeneratedDate | date: 'dd/MM/yyyy'}}</td>
@@ -27,9 +26,9 @@
                 </tbody>
             </table>
         </div>
-        </div>
+    </div>
     <div class="row mt-5">
-        <div class="table-responsive" >
+        <div class="table-responsive">
             <label>List of Transactions</label>
             <table class="table table-bordered table-success table-striped table-hover">
                 <thead>
@@ -61,4 +60,6 @@
     </div>
     <div><button (click)="onPayBill()" *ngIf="!billResult.paid">Pay Bill</button></div>
 </div>
-<div class="alert alert-danger" *ngIf="errorMessage"><pre>{{errorMessage}}</pre></div>
+<div class="alert alert-danger mt-5" *ngIf="errorMessage">
+    <pre>{{errorMessage}}</pre>
+</div>
