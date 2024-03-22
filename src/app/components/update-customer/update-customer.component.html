@@ -1,4 +1,4 @@
-<div class="container w-50 m-auto mt-5"><form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+<div class="container w-50 m-auto mt-5"><form [formGroup]="updateCustomerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="name" class="form-label">Name</label>
         <input type="text" name="name" id="name" class="form-control" formControlName="name">
@@ -27,28 +27,29 @@
         <label for="annualIncome" class="form-label">Annual Income</label>
         <input type="text" name="annualIncome" id="annualIncome" class="form-control" formControlName="annualIncome">
     </div>
-    <button type="submit" class="btn btn-success mt-5 m-auto w-100" [disabled]="customerForm.invalid">Register</button>
+    <button type="submit" class="btn btn-success mt-5 m-auto w-100" [disabled]="updateCustomerForm.invalid">Update</button>
 </form>
 <div class="alert alert-info mt-3" *ngIf="response">{{response}}</div>
-    <div *ngIf="customerForm.controls['name'].invalid && (customerForm.controls['name'].touched || customerForm.controls['name'].dirty)" class="alert alert-danger">
+    <div *ngIf="updateCustomerForm.controls['name'].invalid && (updateCustomerForm.controls['name'].touched || updateCustomerForm.controls['name'].dirty)" class="alert alert-danger">
         Name is required
     </div>
-    <div *ngIf="customerForm.controls['email'].invalid && (customerForm.controls['email'].touched || customerForm.controls['email'].dirty)" class="alert alert-danger">
+    <div *ngIf="updateCustomerForm.controls['email'].invalid && (updateCustomerForm.controls['email'].touched || updateCustomerForm.controls['email'].dirty)" class="alert alert-danger">
         Email is required
     </div>
-    <div *ngIf="customerForm.controls['phone'].invalid && (customerForm.controls['phone'].touched || customerForm.controls['phone'].dirty)" class="alert alert-danger">
+    <div *ngIf="updateCustomerForm.controls['phone'].invalid && (updateCustomerForm.controls['phone'].touched || updateCustomerForm.controls['phone'].dirty)" class="alert alert-danger">
         Phone is required
     </div>
-    <div *ngIf="customerForm.controls['password'].invalid && (customerForm.controls['password'].touched || customerForm.controls['password'].dirty)" class="alert alert-danger">
+    <div *ngIf="updateCustomerForm.controls['password'].invalid && (updateCustomerForm.controls['password'].touched || updateCustomerForm.controls['password'].dirty)" class="alert alert-danger">
         Password is required
     </div>
-    <div *ngIf="customerForm.controls['address'].invalid && (customerForm.controls['address'].touched || customerForm.controls['address'].dirty)" class="alert alert-danger">
+    <div *ngIf="updateCustomerForm.controls['address'].invalid && (updateCustomerForm.controls['address'].touched || updateCustomerForm.controls['address'].dirty)" class="alert alert-danger">
         Address is required
     </div>
-    <div *ngIf="customerForm.controls['dateOfBirth'].invalid && (customerForm.controls['dateOfBirth'].touched || customerForm.controls['dateOfBirth'].dirty)" class="alert alert-danger">
+    <div *ngIf="updateCustomerForm.controls['dateOfBirth'].invalid && (updateCustomerForm.controls['dateOfBirth'].touched || updateCustomerForm.controls['dateOfBirth'].dirty)" class="alert alert-danger">
         DateOfBirth is required
     </div>
-    <div *ngIf="customerForm.controls['annualIncome'].invalid && (customerForm.controls['annualIncome'].touched || customerForm.controls['annualIncome'].dirty)" class="alert alert-danger">
-        annualIncome is required
+    <div *ngIf="updateCustomerForm.controls['annualIncome'].invalid && (updateCustomerForm.controls['annualIncome'].touched || updateCustomerForm.controls['annualIncome'].dirty)" class="alert alert-danger">
+        Annual Income is required
     </div>
 </div>
+

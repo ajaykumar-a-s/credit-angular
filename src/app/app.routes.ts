@@ -2,10 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { AddCustomerComponent } from './components/add-customer/add-customer.component';
 import { CustomerComponent } from './components/customer/customer.component';
-import { UpdateCustomerComponent } from './components/customer/update-customer/update-customer.component';
-import { ViewCustomerComponent } from './components/customer/view-customer/view-customer.component';
-import { ViewCustomersComponent } from './components/customer/view-customers/view-customers.component';
-import { DeleteCustomerComponent } from './components/customer/delete-customer/delete-customer.component';
+import { UpdateCustomerComponent } from './components/update-customer/update-customer.component';
 import { MerchantComponent } from './components/merchant/merchant.component';
 import { AddMerchantComponent } from './components/merchant/add-merchant/add-merchant.component';
 import { ViewMerchantComponent } from './components/merchant/view-merchant/view-merchant.component';
@@ -24,16 +21,8 @@ import { isCustomerGuard } from './guards/is-customer.guard';
 export const routes: Routes = [
   { path: 'register', component: AddCustomerComponent },
   { path: 'login', component: LoginComponent },
-  {
-    path: 'customer',
-    component: CustomerComponent,
-    children: [
-      { path: 'update', component: UpdateCustomerComponent },
-      { path: 'view', component: ViewCustomerComponent },
-      { path: 'view-all', component: ViewCustomersComponent },
-      { path: 'delete', component: DeleteCustomerComponent },
-    ],
-  },
+  { path: 'customer', component: CustomerComponent},
+  {path: 'update-customer', component: UpdateCustomerComponent},
   {
     path: 'merchant',
     component: MerchantComponent,
