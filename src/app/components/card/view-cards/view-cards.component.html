@@ -17,7 +17,7 @@
           <tr *ngFor="let card of cardList">
             <td *ngIf="card">{{card.creditCardId}}</td>
             <td *ngIf="card">{{card.cardNumber}}</td>
-            <td *ngIf="card">#$%</td>
+            <td *ngIf="card">{{card.cvv}}</td>
             <td *ngIf="card && card.creditCardType">{{card.creditCardType.cardType}}</td>
             <td *ngIf="card">{{card.validUpto}}</td>
             <td *ngIf="card && card.creditCardType">{{card.creditCardType.interestRate}}</td>
