@@ -15,14 +15,16 @@ LoginService
   styleUrl: './view-cards.component.css'
 })
 export class ViewCardsComponent implements OnInit {
-  cardList: any[] = [];
+  cardList!:any [];
   constructor(private cardService: CardService,private http: HttpClient,    private loginService: LoginService) {
   }
   ngOnInit(): void {
     if (this.loginService.isAdminLoggedIn()) {
     this.cardService.cardList().subscribe(
       { next: (response) => {
+        if(response!=null)
         this.cardList = response;
+       
       },
       error: (error) => {
         console.log(error);
@@ -30,7 +32,9 @@ export class ViewCardsComponent implements OnInit {
     });
   }
   else{
+    if(this.loginService.getCustomer().creditCard!=null)
     this.cardList=[this.loginService.getCustomer().creditCard];
+  
 
   }
   }

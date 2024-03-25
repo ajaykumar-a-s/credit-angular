@@ -1,5 +1,5 @@
 <div class="row mt-5">
-    <div class="table-responsive" *ngIf="cardList.length > 0,else noCards">
+    <div class="table-responsive" *ngIf="cardList && cardList.length > 0,else noCards">
       <table class="table table-bordered table-striped table-hover">
         <thead class="table-primary">
           <tr>
@@ -13,16 +13,16 @@
             <th>Current Limit</th> 
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="cardList && cardList.length > 0; else noCards">
           <tr *ngFor="let card of cardList">
-            <td>{{card.creditCardId}}</td>
-            <td>{{card.cardNumber}}</td>
-            <td>{{card.cvv}}</td>
-            <td>{{card.creditCardType.cardType}}</td>
-            <td>{{card.validUpto}}</td>
-            <td>{{card.creditCardType.interestRate}}</td>
-            <td>{{card.creditCardType.creditLimit}}</td>
-            <td>{{card.currentLimit}}</td>
+            <td *ngIf="card">{{card.creditCardId}}</td>
+            <td *ngIf="card">{{card.cardNumber}}</td>
+            <td *ngIf="card">#$%</td>
+            <td *ngIf="card && card.creditCardType">{{card.creditCardType.cardType}}</td>
+            <td *ngIf="card">{{card.validUpto}}</td>
+            <td *ngIf="card && card.creditCardType">{{card.creditCardType.interestRate}}</td>
+            <td *ngIf="card && card.creditCardType">{{card.creditCardType.creditLimit}}</td>
+            <td *ngIf="card">{{card.currentLimit}}</td>
           </tr>
         </tbody>
       </table>

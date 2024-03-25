@@ -15,10 +15,23 @@ import { LoginService } from '../../services/login.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent{
+export class HeaderComponent implements OnInit{
+  adminname: any;
+  username: any;
 //username: any = this.loginService.getCustomer().name;
  //adminname:any=this.loginService.getAdmin().name;
   constructor(private loginService: LoginService, private router: Router) {}
+  ngOnInit() {
+    const admin = this.loginService.getAdmin();
+    if (admin) {
+      this.adminname = admin.name;
+    }
+
+    const customer = this.loginService.getCustomer();
+    if (customer) {
+      this.username = customer.name;
+    }
+  }
   isLoggedIn = this.loginService.isLoggedIn();
   isCustomer = this.loginService.isCustomerLoggedIn();
   isAdmin = this.loginService.isAdminLoggedIn();
