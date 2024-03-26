@@ -34,7 +34,7 @@
     </div>
 </div>
     <br><br>
-    <hr>
+    
     <div *ngIf="billResult">
     <div class="row mt-5">
         <div class="table-responsive">
@@ -70,8 +70,10 @@
             </table>
         </div>
     </div>
+    </div>
 
 
 <div class="alert alert-danger mt-5" *ngIf="errorMessage">
     <pre>{{errorMessage | slice:15}}</pre>
+    
 </div>
