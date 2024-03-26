@@ -1,33 +1,37 @@
-<div class="row mt-5">
-    <div class="table-responsive" *ngIf="cardList && cardList.length > 0,else noCards">
-      <table class="table table-bordered table-striped table-hover">
-        <thead class="table-primary">
-          <tr>
-            <th>Credit Card ID</th>
-            <th>Card Number</th>
-            <th>CVV</th>
-            <th>Card Type</th>
-            <th>Valid Upto</th>  
-            <th>Interest Rate</th>
-            <th>Credit Limit</th>
-            <th>Current Limit</th> 
-          </tr>
-        </thead>
-        <tbody *ngIf="cardList && cardList.length > 0; else noCards">
-          <tr *ngFor="let card of cardList">
-            <td *ngIf="card">{{card.creditCardId}}</td>
-            <td *ngIf="card">{{card.cardNumber}}</td>
-            <td *ngIf="card">{{card.cvv}}</td>
-            <td *ngIf="card && card.creditCardType">{{card.creditCardType.cardType}}</td>
-            <td *ngIf="card">{{card.validUpto}}</td>
-            <td *ngIf="card && card.creditCardType">{{card.creditCardType.interestRate}}</td>
-            <td *ngIf="card && card.creditCardType">{{card.creditCardType.creditLimit}}</td>
-            <td *ngIf="card">{{card.currentLimit}}</td>
-          </tr>
-        </tbody>
-      </table>
+<div *ngIf="cardList && cardList.length > 0; else noCards">
+  <div class="cards-container">
+  <div class="credit-card" *ngFor="let card of cardList">
+    <div class="credit-card-logo">FORD Bank</div>
+    <div class="credit-card-type">{{card.creditCardType.cardType}}</div>
+    <div class="credit-card-name" *ngIf="userRole === 'admin'">{{card.customer.name}}</div>
+<div class="credit-card-name" *ngIf="userRole === 'customer'">{{customerName}}</div>
+    <div class="credit-card-number">{{card.cardNumber}}</div>
+    <div class="credit-card-info"> 
+      <div class="credit-card-valid">
+        <div class="credit-card-label">Valid Upto</div>
+        {{card.validUpto}}
+      </div>
+      <div class="credit-card-cvv">
+        <div class="credit-card-label">CVV</div>
+        <div *ngIf="userRole === 'customer'">{{card.cvv}}</div>
+  <div *ngIf="userRole === 'admin'">$#%</div>
+      </div>
     </div>
-    <ng-template #noCards>
-        <div>No Credit cards found</div>
-      </ng-template>
+  
+    <div class="credit-card-limits">
+      <div class="limit">
+        <div class="credit-card-label credit-limit">Credit Limit</div>
+        <div>{{card.creditCardType?.creditLimit}}</div>
+      </div>
+      <div class="limit">
+        <div class="credit-card-label current-limit">Current Limit</div>
+        <div>{{card.currentLimit}}</div>
+      </div>
+    </div>
   </div>
+</div>
+</div>
+
+<ng-template #noCards>
+  <div class="noCards">NO CARDS FOUND</div>
+</ng-template>

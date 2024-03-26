@@ -16,15 +16,24 @@ LoginService
 })
 export class ViewCardsComponent implements OnInit {
   cardList!:any [];
+  customerName!: string;
+userRole: any;
   constructor(private cardService: CardService,private http: HttpClient,    private loginService: LoginService) {
   }
+  
   ngOnInit(): void {
     if (this.loginService.isAdminLoggedIn()) {
+      this.userRole='admin';
     this.cardService.cardList().subscribe(
       { next: (response) => {
+        
         if(response!=null)
-        this.cardList = response;
-       
+      {
+        
+          this.cardList = response;
+          console.log(this.cardList)
+     
+      } 
       },
       error: (error) => {
         console.log(error);
@@ -34,10 +43,13 @@ export class ViewCardsComponent implements OnInit {
   else{
     if(this.loginService.getCustomer().creditCard!=null)
     this.cardList=[this.loginService.getCustomer().creditCard];
-  
+  this.userRole='customer';
+  this.customerName=this.loginService.getCustomer().name;
 
   }
   }
+  
+  
  
 
 }
