@@ -9,7 +9,7 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/customer" routerLinkActive="active">Customer</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="isAdmin">
                     <a class="nav-link" routerLink="/merchant" routerLinkActive="active">Merchant</a>
                 </li>
                 <li class="nav-item">
