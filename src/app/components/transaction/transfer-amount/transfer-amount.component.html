@@ -6,60 +6,67 @@
                     <div class="form-group">
                         <label for="customerCreditCardNumber" class="form-label">Your Credit Card Number</label>
                         <input type="text" name="customerCreditCardNumber" id="customerCreditCardNumber"
-                            class="form-control" formControlName="customerCreditCardNumber" />
+                            class="form-control" formControlName="customerCreditCardNumber"
+                            matTooltip="Enter your 16 digit credit card number" />
                     </div>
                     <div class="form-group">
                         <label for="customerName" class="form-label">Your Name</label>
                         <input type="text" name="customerName" id="customerName" class="form-control"
-                            formControlName="customerName" />
+                            formControlName="customerName" matTooltip="Enter your name" />
                     </div>
-
                     <div class="form-group">
                         <label for="cvv" class="form-label">CVV</label>
-                        <input type="number" name="cvv" id="cvv" class="form-control" formControlName="cvv">
+                        <input type="number" name="cvv" id="cvv" class="form-control" formControlName="cvv"
+                            matTooltip="Enter your 3-digit CVV">
                     </div>
                     <div class="form-group">
                         <label for="transactionName" class="form-label">Transaction Name</label>
                         <input type="text" name="transactionName" id="transactionName" class="form-control"
-                            formControlName="transactionName" />
+                            formControlName="transactionName" matTooltip="Enter the transaction name" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label for="merchantCardNumber" class="form-label">Merchant Card Number</label>
-                        <input type="text" name="merchantCardNumber" id="merchantCardNumber" class="form-control"
-                            formControlName="merchantCardNumber">
+                        <label for="merchantName" class="form-label">Merchant Name</label>
+                        <select id="merchantName" class="form-select" formControlName="merchantName"
+                            (change)="onMerchantChange($event)" matTooltip="Select the merchant name">
+                            <option *ngFor="let merchant of merchants" [value]="merchant.name">{{merchant.name}}
+                            </option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="merchantName" class="form-label">Merchant Name</label>
-                        <input type="text" name="merchantName" id="merchantName" class="form-control"
-                            formControlName="merchantName">
+                        <label for="merchantCardNumber" class="form-label">Merchant Card Number</label>
+                        <select id="merchantCardNumber" class="form-select" formControlName="merchantCardNumber"
+                            (change)="onCardNumberChange($event)" matTooltip="Select the merchant card number">
+                            <option *ngFor="let merchant of merchants" [value]="merchant.cardNumber">
+                                {{merchant.cardNumber}}</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="validUpto" class="form-label">Valid Upto</label>
                         <input type="text" name="validUpto" id="validUpto" class="form-control"
-                            formControlName="validUpto" placeholder="MM/YY" />
+                            formControlName="validUpto" placeholder="MM/YY"
+                            matTooltip="Enter the card validity in MM/YY format" />
                     </div>
                     <div class="form-group">
                         <label for="description" class="form-label">Description</label>
                         <input type="text" name="description" id="description" class="form-control"
-                            formControlName="description" />
+                            formControlName="description" matTooltip="Enter the transaction description" />
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="amount" class="form-label">Amount</label>
-                <input type="number" min="1" name="amount" id="amount" class="form-control" formControlName="amount" />
+                <input type="number" min="1" name="amount" id="amount" class="form-control" formControlName="amount"
+                    matTooltip="Enter the transaction amount" />
             </div>
             <button type="submit" class="btn btn-success w-100 mt-5" [disabled]="transactionForm.invalid">Pay</button>
-
         </form>
     </div>
     <div class="col-sm">
         <div *ngIf="transactionResult">
             <div class="alert alert-success">Transaction Successful</div>
             <div class="table-responsive">
-
                 <table class="table table-bordered table-success table-striped table-hover">
                     <thead>
                         <tr>
@@ -85,83 +92,12 @@
                             <td>{{transactionResult.merchantCardNumber}}</td>
                         </tr>
                     </tbody>
-
                 </table>
             </div>
         </div>
         <div class="alert alert-danger" *ngIf="errorMessage && !transactionResult">
             <p>Transaction Failed!</p><br>
             <pre>{{errorMessage}}</pre>
-        </div>
-        <div *ngIf="transactionForm.controls['customerCreditCardNumber'].touched">
-            <div *ngIf="transactionForm.controls['customerCreditCardNumber'].errors?.['required']"
-                class="alert alert-danger">
-                Customer Credit Card Number is required.
-            </div>
-            <div *ngIf="transactionForm.controls['customerCreditCardNumber'].errors?.['pattern']"
-                class="alert alert-danger">
-                Customer Credit Card Number must be 16 digits.
-            </div>
-        </div>
-
-        <div *ngIf="transactionForm.controls['customerName'].touched">
-            <div *ngIf="transactionForm.controls['customerName'].errors?.['required']" class="alert alert-danger">
-                Customer Name is required.
-            </div>
-        </div>
-
-        <div *ngIf="transactionForm.controls['validUpto'].touched">
-            <div *ngIf="transactionForm.controls['validUpto'].errors?.['required']" class="alert alert-danger">
-                Valid Upto is required.
-            </div>
-            <div *ngIf="transactionForm.controls['validUpto'].errors?.['pattern']" class="alert alert-danger">
-                Valid Upto must be in MM/YY format.
-            </div>
-        </div>
-
-        <div *ngIf="transactionForm.controls['cvv'].touched">
-            <div *ngIf="transactionForm.controls['cvv'].errors?.['required']" class="alert alert-danger">
-                CVV is required.
-            </div>
-            <div *ngIf="transactionForm.controls['cvv'].errors?.['pattern']" class="alert alert-danger">
-                CVV must be 3 digits.
-            </div>
-        </div>
-
-        <div *ngIf="transactionForm.controls['merchantCardNumber'].touched">
-            <div *ngIf="transactionForm.controls['merchantCardNumber'].errors?.['required']" class="alert alert-danger">
-                Merchant Card Number is required.
-            </div>
-            <div *ngIf="transactionForm.controls['merchantCardNumber'].errors?.['pattern']" class="alert alert-danger">
-                Merchant Card Number must be 16 digits.
-            </div>
-        </div>
-
-        <div *ngIf="transactionForm.controls['merchantName'].touched">
-            <div *ngIf="transactionForm.controls['merchantName'].errors?.['required']" class="alert alert-danger">
-                Merchant Name is required.
-            </div>
-        </div>
-
-        <div *ngIf="transactionForm.controls['transactionName'].touched">
-            <div *ngIf="transactionForm.controls['transactionName'].errors?.['required']" class="alert alert-danger">
-                Transaction Name is required.
-            </div>
-        </div>
-
-        <div *ngIf="transactionForm.controls['description'].touched">
-            <div *ngIf="transactionForm.controls['description'].errors?.['required']" class="alert alert-danger">
-                Description is required.
-            </div>
-        </div>
-
-        <div *ngIf="transactionForm.controls['amount'].touched">
-            <div *ngIf="transactionForm.controls['amount'].errors?.['required']" class="alert alert-danger">
-                Amount is required.
-            </div>
-            <div *ngIf="transactionForm.controls['amount'].errors?.['min']" class="alert alert-danger">
-                Amount must be at least 1.
-            </div>
         </div>
     </div>
 </div>

@@ -27,8 +27,8 @@ export const routes: Routes = [
   {
     path: 'merchant',
     component: MerchantComponent,
-    canActivate: [isLoggedInGuard],
-    canActivateChild: [isLoggedInGuard],
+    canActivate: [isLoggedInGuard, isAdminGuard],
+    canActivateChild: [isLoggedInGuard, isAdminGuard],
     children: [
       { path: 'add-merchant', component: AddMerchantComponent },
       { path: 'update', component: UpdateMerchantComponent },

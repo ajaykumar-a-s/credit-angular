@@ -22,7 +22,7 @@ export class LoginService {
     if (httpError.error instanceof ErrorEvent) {
       errorMessage = `Error: ${httpError.error.message}`;
     } else {
-      errorMessage = `Error Code: ${httpError.status}\nMessage: ${httpError.error}`;
+      errorMessage = `Error: ${httpError.error}`;
     }
     return throwError(errorMessage);
   }
