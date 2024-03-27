@@ -1,7 +1,7 @@
 <div *ngIf="cardList && cardList.length > 0; else noCards">
   <div class="cards-container">
   <div class="credit-card" *ngFor="let card of cardList">
-    <div class="credit-card-logo">FORD Bank</div>
+    <div class="credit-card-logo">FORD Credit</div>
     <div class="credit-card-type">{{card.creditCardType.cardType}}</div>
     <div class="credit-card-name" *ngIf="userRole === 'admin'">{{card.customer.name}}</div>
 <div class="credit-card-name" *ngIf="userRole === 'customer'">{{customerName}}</div>

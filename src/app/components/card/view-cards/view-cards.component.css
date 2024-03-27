@@ -18,8 +18,13 @@
     margin: 20px;
     border-radius: 25px;
     flex: 0 0 calc(50% - 40px);
+    transition: transform 0.3s ease-in-out;
     
   }
+  
+:hover {
+  transform: scale(1.03); /* Add this block */
+}
   
   .credit-card-logo {
     font-size: 20px;
