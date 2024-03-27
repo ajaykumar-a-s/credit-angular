@@ -40,12 +40,14 @@
         </div>
     </form>
 </div>
+<div class="text-center">
+    <h1>List of Transactions</h1>
+</div>
 <div class="alert alert-danger" *ngIf="errorMessage && transactions.length === 0">
     <p>No Transactions!</p><br>
     {{errorMessage}}
 </div>
 <div class="row mt-2">
-    <div class="text-center"><h1>List of Transactions</h1></div>
     <div class="table-responsive" *ngIf="transactions.length > 0">
         <table class="table table-bordered table-success table-striped table-hover">
             <thead>
