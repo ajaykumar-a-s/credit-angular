@@ -9,10 +9,11 @@ import {
 import { TransactionService } from '../../../services/transaction.service';
 import { TransactionResponse } from '../../../model/transaction-response';
 import { LoginService } from '../../../services/login.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @Component({
   selector: 'app-view-transactions',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, MatTooltipModule],
   templateUrl: './view-transactions.component.html',
   styleUrl: './view-transactions.component.css',
 })
