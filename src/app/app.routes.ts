@@ -22,8 +22,16 @@ import { isAdminGuard } from './guards/is-admin.guard';
 export const routes: Routes = [
   { path: 'register', component: AddCustomerComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'customer', component: CustomerComponent, canActivate:[isLoggedInGuard]},
-  {path: 'update-customer', component: UpdateCustomerComponent, canActivate:[isLoggedInGuard]},
+  {
+    path: 'customer',
+    component: CustomerComponent,
+    canActivate: [isLoggedInGuard],
+  },
+  {
+    path: 'update-customer',
+    component: UpdateCustomerComponent,
+    canActivate: [isLoggedInGuard],
+  },
   {
     path: 'merchant',
     component: MerchantComponent,
@@ -32,7 +40,8 @@ export const routes: Routes = [
     children: [
       { path: 'add-merchant', component: AddMerchantComponent },
       { path: 'update', component: UpdateMerchantComponent },
-      { path: 'view', component: ViewMerchantComponent}
+      { path: 'view', component: ViewMerchantComponent },
+      { path: '', redirectTo: 'view', pathMatch: 'full' },
     ],
   },
   {
@@ -41,9 +50,18 @@ export const routes: Routes = [
     canActivate: [isLoggedInGuard],
     canActivateChild: [isLoggedInGuard],
     children: [
-      { path: 'request', component: CardRequestComponent, canActivate:[isCustomerGuard] },
-      { path: 'view-requests', component: ViewRequestsComponent, canActivate:[isAdminGuard] },
+      {
+        path: 'request',
+        component: CardRequestComponent,
+        canActivate: [isCustomerGuard],
+      },
+      {
+        path: 'view-requests',
+        component: ViewRequestsComponent,
+        canActivate: [isAdminGuard],
+      },
       { path: 'view-cards', component: ViewCardsComponent },
+      { path: '', redirectTo: 'view-cards', pathMatch: 'full' },
     ],
   },
   {
@@ -56,6 +74,7 @@ export const routes: Routes = [
         canActivate: [isCustomerGuard],
       },
       { path: 'view-all', component: ViewTransactionsComponent },
+      { path: '', redirectTo: 'view-all', pathMatch: 'full' },
     ],
     canActivate: [isLoggedInGuard],
     canActivateChild: [isLoggedInGuard],
@@ -64,7 +83,6 @@ export const routes: Routes = [
     path: 'bill',
     component: BillComponent,
     canActivate: [isCustomerGuard],
-    
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

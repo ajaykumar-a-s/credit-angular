@@ -1,37 +1,35 @@
 <div *ngIf="cardList && cardList.length > 0; else noCards">
-  <div class="cards-container">
-  <div class="credit-card" *ngFor="let card of cardList">
-    <div class="credit-card-logo">FORD Credit</div>
-    <div class="credit-card-type">{{card.creditCardType.cardType}}</div>
-    <div class="credit-card-name" *ngIf="userRole === 'admin'">{{card.customer.name}}</div>
-<div class="credit-card-name" *ngIf="userRole === 'customer'">{{customerName}}</div>
-    <div class="credit-card-number">{{card.cardNumber}}</div>
-    <div class="credit-card-info"> 
-      <div class="credit-card-valid">
-        <div class="credit-card-label">Valid Upto</div>
-        {{card.validUpto}}
+  <div class="cards-container d-flex justify-content-center">
+    <div class="credit-card" *ngFor="let card of cardList">
+      <div class="credit-card-logo">FORD Credit</div>
+      <div class="credit-card-type">{{card.creditCardType.cardType}}</div>
+      <div class="credit-card-name" *ngIf="userRole === 'admin'">{{card.customer.name}}</div>
+      <div class="credit-card-name" *ngIf="userRole === 'customer'">{{customerName}}</div>
+      <div class="credit-card-number">{{card.cardNumber}}</div>
+      <div class="credit-card-info">
+        <div class="credit-card-valid">
+          <div class="credit-card-label">Valid Upto</div>
+          {{card.validUpto}}
+        </div>
+        <div class="credit-card-cvv">
+          <div class="credit-card-label">CVV</div>
+          <div *ngIf="userRole === 'customer'">{{card.cvv}}</div>
+          <div *ngIf="userRole === 'admin'">$#%</div>
+        </div>
       </div>
-      <div class="credit-card-cvv">
-        <div class="credit-card-label">CVV</div>
-        <div *ngIf="userRole === 'customer'">{{card.cvv}}</div>
-  <div *ngIf="userRole === 'admin'">$#%</div>
-      </div>
-    </div>
-  
-    <div class="credit-card-limits">
-      <div class="limit">
-        <div class="credit-card-label credit-limit">Credit Limit</div>
-        <div>{{card.creditCardType?.creditLimit}}</div>
-      </div>
-      <div class="limit">
-        <div class="credit-card-label current-limit">Current Limit</div>
-        <div>{{card.currentLimit}}</div>
+      <div class="credit-card-limits">
+        <div class="limit">
+          <div class="credit-card-label credit-limit">Credit Limit</div>
+          <div>{{card.creditCardType?.creditLimit}}</div>
+        </div>
+        <div class="limit">
+          <div class="credit-card-label current-limit">Current Limit</div>
+          <div>{{card.currentLimit}}</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
-
 <ng-template #noCards>
   <div class="noCards">NO CARDS FOUND</div>
 </ng-template>
