@@ -3,16 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { CardService } from '../../../services/card.service';
+import { HeaderComponent } from "../../header/header.component";
 
 
 @Component({
-  selector: 'app-view-requests',
-  standalone: true,
-  imports: [NgIf,NgFor],
-  templateUrl: './view-requests.component.html',
-  styleUrl: './view-requests.component.css'
+    selector: 'app-view-requests',
+    standalone: true,
+    templateUrl: './view-requests.component.html',
+    styleUrl: './view-requests.component.css',
+    imports: [NgIf, NgFor, HeaderComponent]
 })
 export class ViewRequestsComponent implements OnInit{
+closeModal() {
+throw new Error('Method not implemented.');
+}
 validate(arg0: any) {
 throw new Error('Method not implemented.');
 }
