@@ -2,5 +2,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:hsl(154, 10%, 73%);
+    background-color:rgb(181, 188, 184);
+}
+.container{
+    text-align: center;
+    width: 300px;
+    border: 10px solid hsl(120, 1%, 36%);
+    padding: 50px;
+    margin: 20px;
+    outline-style: ridge;
+    position: absolute;
+    top: 50%;
+    left: 57.5%;
+    margin-left: -150px; /* Half of the width (300px / 2) */
+    margin-top: -100px;
 }

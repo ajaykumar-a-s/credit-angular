@@ -5,11 +5,25 @@ table {
   }
   
   td, th {
-    border: 1px solid hsl(167, 6%, 72%);
+    border: 1px solid rgb(150, 156, 154);
     text-align: left;
     padding: 8px;
+    
   }
   
   tr:nth-child(even) {
-    background-color: hsl(167, 11%, 69%);
+    background-color: rgb(214, 211, 216);
+  }
+  tr:nth-child(odd) {
+    background-color: #e2d9d9;
+  }
+  th{
+    background-color: hsl(222, 5%, 64%);
+    text-decoration: solid;
+  }
+
+  .center{
+    text-align: center;
+    text-shadow: 0ch;
+
   }
