@@ -1,5 +1,5 @@
-<div style="background-color: aliceblue;">
-    <h2> Update existing merchant</h2>
+<div class="c">
+    <h2 > Update existing merchant</h2>
     <br>
 </div>
 
@@ -13,7 +13,7 @@
             <label for="cardNumber"><b>CARD NUMBER :</b></label><br>
             <input type="text" id="cardNumber" name="cardNumber" formControlName="cardNumber"/><br><br>
 
-            <button type="submit" style="background-color:#b1c4bd;" [disabled]="merchantForm.invalid" ><b>update Merchant</b></button>
+            <button type="submit"  [disabled]="merchantForm.invalid" ><b>update Merchant</b></button>
         </form>
     </div>
     <div *ngIf="merchantForm.controls['name'].invalid && (merchantForm.controls['name'].touched || merchantForm.controls['name'].dirty)" class="alert alert-danger">
