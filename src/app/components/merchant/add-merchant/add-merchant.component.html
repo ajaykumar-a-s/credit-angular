@@ -4,14 +4,15 @@
     </h2>
 </div>
 
-<body>
-    <div class="container" style="background-color: gainsboro;">
+<br><br>
+<body style="background-color: hsl(0, 0%, 81%) ;text-align: center;">
+    <div class="container" style="background-color: gainsboro; text-align:center;">
         <form style="background-color: gainsboro;" [formGroup]="merchantForm" (ngSubmit)="addMerchant()">
 
             <label for="merchantName"><b>MERCHANT NAME</b></label><br>
             <input type="text" id="merchantName" name="merchantName" formControlName="name"><BR><BR>
 
-            <label for="cardNumber"><b>CARD NUMBER :</b></label><br>
+            <label for="cardNumber"><b>CARD NUMBER </b></label><br>
             <input type="text" id="cardNumber" name="cardNumber" formControlName="cardNumber"><br><br>
 
             <button type="submit" style="background-color:#b1c4bd;" ><b>Add Merchant</b></button>
