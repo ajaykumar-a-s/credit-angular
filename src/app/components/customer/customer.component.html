@@ -24,6 +24,9 @@
           <button class="btn btn-danger ml-2" (click)="deleteCustomer(customer.customerId)">Delete</button>
         </div>
       </div>
+      <div class="row justify-content-center alert alert-danger" *ngIf="errorMessage">
+        {{errorMessage}}
+      </div>
     </div>
   </div>
   <div class="row justify-content-center" *ngIf="!customers || customers.length === 0">
@@ -31,4 +34,3 @@
       <p class="no-customers">No customers found.</p>
     </div>
   </div>
-</div>
