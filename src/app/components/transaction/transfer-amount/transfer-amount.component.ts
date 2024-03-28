@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
 import { MerchantService } from '../../../services/merchant.service';
 import { Merchant } from '../../../model/merchant';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-transfer-amount',
