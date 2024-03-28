@@ -34,7 +34,7 @@
             [disabled]="customerForm.invalid">Register</button>
     </form>
     <div class="alert alert-info mt-3" *ngIf="response">{{response}}</div>
-    <div *ngIf="customerForm.controls['name'].invalid && (customerForm.controls['name'].touched || customerForm.controls['name'].dirty)"
+    <div class="mt-3"><div *ngIf="customerForm.controls['name'].invalid && (customerForm.controls['name'].touched || customerForm.controls['name'].dirty)"
         class="alert alert-danger">
         Name is required
     </div>
@@ -61,5 +61,6 @@
     <div *ngIf="customerForm.controls['annualIncome'].invalid && (customerForm.controls['annualIncome'].touched || customerForm.controls['annualIncome'].dirty)"
         class="alert alert-danger">
         annualIncome is required
-    </div>
+    </div></div>
+    
 </div>
